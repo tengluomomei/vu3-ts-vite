@@ -117,6 +117,114 @@
   let y2: T = ['abc', 12, true]
   console.log(y2)
 
+
+  // 自定义类型
+  const fn4 = (a: any)=>{
+  }
+
+  interface Itype{
+    a: string,
+    b: number,
+    c?: string,
+    readonly d?: string,
+    [key: string]: any, // 键可以是任意，值也可以是任意
+    onChange: (num: any)=>void
+  }
+  interface Itype{
+    e: boolean
+  }
+
+  let z: Itype = {
+    a: 'hello',
+    b: 2,
+    c: 'world',
+    d: 'read',
+    name: 'xiaoming',
+    onChange: (a)=>{
+      console.log(a)
+    },
+    e: true
+  }
+
+  
+  // 联合类型
+  let l1: number | string | boolean = true
+  l1 = 'hello'
+  l1 = 444
+
+  // 起别名
+  type U = number | string | boolean
+  let l2: U = 110
+  console.log(l2)
+
+
+  // 交叉类型
+  interface Itype2{
+    a: string
+  }
+  interface Itype3{
+    b: number
+  }
+
+  type J = Itype2 & Itype3
+  let j1:J = {
+    a: 'hello',
+    b: 12
+  }
+
+  type J2 = string & number
+  // let j2:J2 = 'hekko' // never 永远不
+
+
+
+  // 字面量类型
+  let zml:"hello" = 'hello' // 无意义
+  type A = 'left' | 'right' | 'bottom' | 'top'
+  let B: A = 'left'
+  // B: A = 'aaa'
+
+  let ajax = {
+    url: 'https://www.baidu.com/',
+    method: 'GET'
+  }
+
+  function post(url: string, method: 'POST' | 'GET'){
+    console.log(url, method)  
+  }
+  // ajax.method 字符串，不能把字符串赋值给联合类型使用
+  post(ajax.url,ajax.method as "GET")
+
+
+
+  // 函数类型
+  type FnType = (num: number) => number
+  const fn5: FnType = (num: number): number =>{
+    return num *3
+  }
+  console.log(fn5(5))
+
+  const fn6 = (num = 110): number=>{
+    return num *3
+  }
+  console.log(fn6())
+
+  const fn7 = (...rest:(string | number)[]) =>{
+    console.log(rest)
+  }
+  fn7(1,2,4)
+
+
+  // 类型断言
+  const box = document.getElementById('box') as HTMLImageElement 
+  box.src='111'
+
+  function fn8(msg?: string){
+    // console.log(msg.toUpperCase())
+    console.log(msg!.toUpperCase())
+  }
+  fn8('hello')
+  fn8()
+
 </script>
 
 <style scoped>

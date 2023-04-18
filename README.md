@@ -80,6 +80,7 @@
    1.一个泛型
    2.多个泛型
    3.自定义泛型
+   4.extends
 
 
 
@@ -119,3 +120,9 @@
    emit传值：
 
    插槽：
+
+
+# Vue-Vben-Admin
+   http://doc.vvbin.cn/guide/introduction.html#%E9%9C%80%E8%A6%81%E6%8E%8C%E6%8F%A1%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86
+
+   https://github.com/vbenjs/vue-vben-admin

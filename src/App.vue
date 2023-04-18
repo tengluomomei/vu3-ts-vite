@@ -1,14 +1,15 @@
 <template>
-  <HelloWorld msg="Vite + Vue" />
-  <div class="upload-area">
-    <van-uploader :after-read="afterRead">
-      <van-button type="primary">上传</van-button>
-    </van-uploader>
-  </div>
+  <!-- <HelloWorld msg="Vite + Vue" />-->
+  <router-view></router-view>
 </template>
 
 <script setup lang="ts">
-  import HelloWorld from './components/HelloWorld.vue'
+  import { showToast } from 'vant';
+  // import HelloWorld from './components/HelloWorld.vue'
+
+  const showFun = ()=>{
+    showToast('提示内容');
+  }
 
   const afterRead = (file: any) => {
     // 此时可以自行将文件上传至服务器
@@ -220,10 +221,130 @@
 
   function fn8(msg?: string){
     // console.log(msg.toUpperCase())
-    console.log(msg!.toUpperCase())
+    // console.log(msg!.toUpperCase())
   }
   fn8('hello')
   fn8()
+
+
+  // 类型缩小  typeof
+  function fn9(id: number | string){
+    if(typeof id === 'string'){
+      console.log(id.toLocaleUpperCase())
+    }else{
+      console.log(id.toFixed(2))
+    }
+  }
+  fn9(110)
+  fn9('hello')
+
+  // 类型缩小  === !==
+  type Deriction = 'left' | 'right' | 'bottom' | 'top'
+  function fn10(deriction: Deriction ){
+    if(deriction === 'left'){
+      console.log('向左')
+    }else if(deriction === 'right'){
+      console.log('向右')
+    }   
+  }
+  fn10('left')
+
+  // 类型缩小  instanceof
+  function fn11(date: string | Date){
+    if(date instanceof Date){
+      console.log(date.getTime())
+    }else{
+      console.log(date)
+    }
+  }
+  fn11('2023-01-12')
+  fn11(new Date())
+
+  // 类型缩小  in
+  interface Itype4{
+    code: ()=> void
+  }
+
+  interface Itype5{
+    say: ()=> void
+  }
+
+  function fn12(d: Itype4 | Itype5){
+    if("code" in d){
+      d.code()
+    }else if('say' in d){
+      d.say()
+    }
+  }
+  
+  const i1: Itype4 = {
+    code(){
+      console.log('code')
+    } 
+  }
+
+  const i2: Itype5 = {
+    say(){
+      console.log('say')
+    } 
+  }
+
+  fn12(i1)
+  fn12(i2)
+
+  // 一个泛型 
+  function fn13<T>(num: T){
+    console.log(num)
+  }
+  fn13<number>(12)
+  fn13<string>('12')
+  fn13(true)
+
+  // 多个泛型 T,K,V，O,E,U
+  function fn14<T,U>(num: T, num2: U){
+    console.log(`${num},${num2}`)
+  }
+  fn14(2,3)
+
+  // 自定义泛型
+  interface Human<T,U>{
+    name: T,
+    age: U
+  }
+
+  let person1: Human<string, number> = {
+    name: 'xiaoming',
+    age: 12
+  }
+  console.log(person1)
+
+
+  // T extends Itype6>  
+  interface Itype6{
+    length: number
+  }
+
+  function fn15<T extends Itype6>(data: T): T{
+    return data
+  }
+  console.log(fn15('bcssss'))
+  console.log(fn15(['a','b']))
+  // console.log(fn15(123))
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
 
 </script>
 

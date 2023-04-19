@@ -5,6 +5,7 @@ import {request} from '@/utils/http';
 enum Api {
   ImageList = '/app/carddiy/card/square-list',
   CardLike = '/app/carddiy/card/like',
+  CardInfo = '/app/carddiy/card/info'
 }
 
 export function ImageListApi(params: { page: number; page_size: number }) {
@@ -23,6 +24,18 @@ export function CardLikeApi(params: Pick<ImageItem, 'card_id'>) {
       url: Api.CardLike,
       method: 'POST',
       data: params,
+    }
+  );
+}
+
+export function CardInfoApi(params:any) {
+  return request(
+    {
+      url: Api.CardInfo,
+      method: 'POST',
+      data: {
+        ...params,
+      },
     }
   );
 }

@@ -18,3 +18,21 @@ export type ImageList = {
   rows: ImageItem[];
   total: number;
 };
+
+export type cardDataItem = {
+  card_id: number;
+  nickname: string;
+  avatar: string;
+  img: string;
+  title: string;
+  card_name: string;
+  words: string;
+  likes_number: number;
+  review_status: number;
+  card_status: number;
+  publish_at: number;
+  created_at: number;
+  is_like: number;
+  can_del: number;
+  can_same_clause: number;
+};

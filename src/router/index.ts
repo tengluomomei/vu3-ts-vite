@@ -7,9 +7,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/HomeView.vue')
   },
   {
-    path: '/about',
+    path: '/about/:cardId',
     name: 'about',
-    component: () => import('../views/AboutView.vue')
+    component: () => import('../views/AboutView.vue'),
+    props: (router) => {
+      return {
+        cardId: router.params.cardId ? Number(router.params?.cardId) : 0,
+      };
+    },
   }
 ]
 

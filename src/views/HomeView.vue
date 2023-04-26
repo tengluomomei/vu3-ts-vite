@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+    <button @click="openFun">确定</button>
+    <HelloView :isShow="isshow" @closeUpdate="closeFun"></HelloView>
     <van-pull-refresh v-model="refreshListLoading" @refresh="getData(true)">
       <van-list
         v-model:loading="listLoading"
@@ -24,6 +26,17 @@
   import { awaitWrap } from '@/utils/index';
   import type { ImageItem } from '@/api/model/homeModel';
   import {ImageListApi } from '@/api/home';
+  import HelloView from '@/components/HelloWorld.vue'
+
+  const isshow = ref(false)
+  const openFun = ()=>{
+    isshow.value = true
+  }
+
+  const closeFun = (data:boolean)=>{
+    console.log(data)
+    isshow.value = false
+  }
 
   
   const refreshListLoading = ref(false);

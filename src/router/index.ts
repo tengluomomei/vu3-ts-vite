@@ -15,7 +15,12 @@ const routes: Array<RouteRecordRaw> = [
         cardId: router.params.cardId ? Number(router.params?.cardId) : 0,
       };
     },
-  }
+  },
+  {
+    path: '/form',
+    name: 'form',
+    component: () => import('../views/form/index')
+  },
 ]
 
 const router = createRouter({
